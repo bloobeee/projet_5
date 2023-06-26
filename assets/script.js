@@ -53,21 +53,21 @@ function changeSlides() { /*fonction qui change les image des slide*/
 
 
 
-generatedots();
+generatedots();/*genere la premiere affiche des dots*/
 
-const arrowLeft = document.querySelector(".arrow_left"); /**/
-arrowLeft.addEventListener("click", function () { /**/
-	dotSelected--; /**/
-	dotSelected < 0 ? dotSelected = slidesLength : null;  /**/
-	changeSlides(); /**/
-	return console.log("click arrow left" + dotSelected + " " + slidesLength); /**/
+const arrowLeft = document.querySelector(".arrow_left"); /*arrowLeft contien la balise html ayant la classe arrow_left*/
+arrowLeft.addEventListener("click", function () { /*on rajoute une fonction a arrowleft avec addEventListener qui permet de cliquer sur la fleche*/
+	dotSelected--; /*on dit que dot selected retire a chaque click sur la fleche gauche*/
+	dotSelected < 0 ? dotSelected = slidesLength : null;  /* si dot selected et infirieur a zero alors dotSelected et egal a slidesLength sinon dotSelected ne change pas*/
+	changeSlides(); /*permet de changer les slide a chaque click*/
+	return console.log("click arrow left" + dotSelected + " " + slidesLength); /*permet de faire un retour dans la console*/
 })
 
 
-const arrowRight = document.querySelector(".arrow_right"); /**/
-arrowRight.addEventListener("click", function () { /**/
-	dotSelected++; /**/
-	dotSelected > slidesLength ? dotSelected = 0 : null; /**/
-	changeSlides(); /**/
-	return console.log("click arrow right" + dotSelected + " " + slidesLength); /**/
+const arrowRight = document.querySelector(".arrow_right"); /*arrowright contien la balise html ayant la classe arrow_right*/
+arrowRight.addEventListener("click", function () { /*on rajoute une fonction a arrowright avec addEventListener qui permet de cliquer sur la droite*/
+	dotSelected++; /*on dit que dot selected ajoute a chaque click sur la fleche gauche*/
+	dotSelected > slidesLength ? dotSelected = 0 : null; /*si dot selected et supperieur a slideLength alors dotSelected et egal a 0 sinon dot selected ne change pas*/
+	changeSlides(); /*permet de changer les slide a chaque click*/
+	return console.log("click arrow right" + dotSelected + " " + slidesLength); /*permet de faire un retour dans la console*/
 })
