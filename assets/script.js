@@ -43,6 +43,14 @@ function generatedots() { /*fonction qui genere des dots*/
 
 
 function changeSlides() { /*fonction qui change les image des slide*/
+const dotElements = document.querySelectorAll(".dot");/*on defini la constante dotElements qui contient la balise html qui contient la classe dot */
+dotElements.forEach((dot, index) => {/*permet de selectionner chaque element du tableau dotelement avec la classe dot ou index */
+	if (index === dotSelected) { /*si index et egal a dotSelected*/
+		dot.classList.add("dot_selected");/*on ajoute la classe dot_selected */
+	} else {/*si index et pas egal a dotSelected */
+		dot.classList.remove("dot_selected");/*on supprime la classe dot_selected */
+	}
+});
 	const bannerImg = document.querySelector(".banner-img")/*bannerImg contien la balise html ayant la classe banner-img*/
 	const bannertagline = document.querySelector("#banner p");/*baliseTexte contien la balise html P de l'element ayant l'ID banner*/
 	bannerImg.src = "./assets/images/slideshow/" + slides[dotSelected].image; /*on change la proprieter src de la balise img L46 dans le chemin assets on va cherche la valeur de la proprieter image a l'index dotSelected*/
@@ -53,21 +61,22 @@ function changeSlides() { /*fonction qui change les image des slide*/
 
 
 
-generatedots();/*genere la premiere affiche des dots*/
+
+generatedots();/*genere le premiere affichage des dots*/
 
 const arrowLeft = document.querySelector(".arrow_left"); /*arrowLeft contien la balise html ayant la classe arrow_left*/
-arrowLeft.addEventListener("click", function () { /*on rajoute une fonction a arrowleft avec addEventListener qui permet de cliquer sur la fleche*/
-	dotSelected--; /*on dit que dot selected retire a chaque click sur la fleche gauche*/
-	dotSelected < 0 ? dotSelected = slidesLength : null;  /* si dot selected et infirieur a zero alors dotSelected et egal a slidesLength sinon dotSelected ne change pas*/
+arrowLeft.addEventListener("click", function () { /*on ajoute un eventlistener au click de arrowleft*/
+	dotSelected--; /*on retire 1 a dotselected */
+	if ( dotSelected < 0) {dotSelected = slidesLength ;}  /* si dot selected et infirieur a zero alors dotSelected et egal a slidesLength sinon dotSelected ne change pas*/
 	changeSlides(); /*permet de changer les slide a chaque click*/
 	return console.log("click arrow left" + dotSelected + " " + slidesLength); /*permet de faire un retour dans la console*/
 })
 
 
-const arrowRight = document.querySelector(".arrow_right"); /*arrowright contien la balise html ayant la classe arrow_right*/
+const arrowRight = document.querySelector(".arrow_right"); /*on ajoute un eventlistener au click de arrowright*/
 arrowRight.addEventListener("click", function () { /*on rajoute une fonction a arrowright avec addEventListener qui permet de cliquer sur la droite*/
-	dotSelected++; /*on dit que dot selected ajoute a chaque click sur la fleche gauche*/
-	dotSelected > slidesLength ? dotSelected = 0 : null; /*si dot selected et supperieur a slideLength alors dotSelected et egal a 0 sinon dot selected ne change pas*/
+	dotSelected++; /*on ajoute 1 a dotselected*/
+	if (dotSelected > slidesLength){ dotSelected = 0;} /*si dot selected et supperieur a slideLength alors dotSelected et egal a 0 sinon dot selected ne change pas*/
 	changeSlides(); /*permet de changer les slide a chaque click*/
 	return console.log("click arrow right" + dotSelected + " " + slidesLength); /*permet de faire un retour dans la console*/
 })
